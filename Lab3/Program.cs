@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab3
 {
@@ -10,10 +7,14 @@ namespace Lab3
     {
         static void Main(string[] args)
         {
+            // James - ah, I see you are breaking the app into  a couple methods here! good use of keeping your main method very lean,
+            // to go even further I would instead put this in maybe a try catch block with a general exception to start off and have a totally seperate 
+            // method for your entire app, like AppStart or something. 
             while (true)
             {
                 IntegerGetter();
                 Console.Write("Restart? (y/n): ");
+                // James - good condition on restarting the code!
                 if (!string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase))
                 {
                     break;
