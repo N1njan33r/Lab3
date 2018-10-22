@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Lab3
 {
@@ -15,10 +18,17 @@ namespace Lab3
                 IntegerGetter();
                 Console.Write("Restart? (y/n): ");
                 // James - good condition on restarting the code!
-                if (!string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase))
+                //if (!string.Equals(Console.ReadLine(), "y", StringComparison.OrdinalIgnoreCase))
+                //{
+                //    break;
+                //}
+                //Figured out Console.ReadKey() but is there a better way???
+                ConsoleKeyInfo repeat = Console.ReadKey();
+                if (!repeat.KeyChar.Equals('y'))
                 {
                     break;
                 }
+                Console.WriteLine();
             }
         }
 
@@ -26,8 +36,19 @@ namespace Lab3
         {
             // James - although it seems like a small change, you could break this up into a it's own method like 
             // GetName() and it return a string!
-            Console.Write("Enter your name: ");
-            var name = Console.ReadLine();
+            var name = "Default User";
+            while (true)
+            {
+                Console.Write("Enter your name: ");
+                name = Console.ReadLine();
+                if (!Regex.IsMatch(name, @"^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
+                {
+                    Console.WriteLine("Name can only contain letters (A-Z).");
+                    continue;
+                }
+
+                break;
+            }
             while (true)
             {
                 Console.Write($"Enter an integer (1-100), {name}: ");
